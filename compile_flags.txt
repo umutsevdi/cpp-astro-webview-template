@@ -1,0 +1,17 @@
+-std=c++23
+-xc++-header
+-Wall
+-Wextra
+-I
+include/
+-I
+/usr/lib64/wx/include/gtk3-unicode-3.2
+-I
+/usr/include/wx-3.2
+-I
+build/_deps/jsoncpp-src/include/
+-D_FILE_OFFSET_BITS=64
+-D_LARGEFILE_SOURCE=
+-DWXUSINGDLL
+-D__WXGTK__
+-pthread

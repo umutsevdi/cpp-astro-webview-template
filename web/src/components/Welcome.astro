@@ -1,0 +1,121 @@
+---
+import { Home, Info, Mail, Star, Code, Zap } from "@lucide/astro";
+---
+
+<div class="min-h-screen bg-base-200">
+    <!-- Navbar -->
+    <div class="navbar bg-base-100">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16"></path></svg
+                    >
+                </div>
+                <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                    <li><a><Home class="w-4 h-4" />Home</a></li>
+                    <li><a><Info class="w-4 h-4" />About</a></li>
+                    <li><a><Mail class="w-4 h-4" />Contact</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl"
+                ><Code class="w-6 h-6 mr-2" />Hybrid App</a
+            >
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a><Home class="w-4 h-4" />Home</a></li>
+                <li><a><Info class="w-4 h-4" />About</a></li>
+                <li><a><Mail class="w-4 h-4" />Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <button class="btn btn-primary"
+                ><Star class="w-4 h-4 mr-2" />Get Started</button
+            >
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero min-h-[60vh] bg-base-100">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Webview Interop Demo</h1>
+                <div class="card bg-base-100 shadow-xl max-w-md mx-auto">
+                    <div class="card-body">
+                        <h3 class="card-title">C++ to JS</h3>
+                        <p>Data from C++: <span id="cppData">0</span></p>
+                        <h3 class="card-title mt-4">JS to C++</h3>
+                        <button class="btn btn-secondary" id="callCppButton"
+                            >Call C++ Method</button
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-center mb-8">Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="card-title">
+                        <Home class="w-6 h-6" />
+                        Native Performance
+                    </div>
+                    <p>
+                        Leverage WxWidget for native desktop performance with
+                        web flexibility.
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="card-title">
+                        <Code class="w-6 h-6" />
+                        Modern Web Tech
+                    </div>
+                    <p>
+                        Built with Astro and Tailwind CSS for a modern
+                        development experience.
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="card-title">
+                        <Zap class="w-6 h-6" />
+                        Fast & Responsive
+                    </div>
+                    <p>
+                        Optimized for speed with DaisyUI components and Lucide
+                        icons.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.updateFromCpp = (data) =>
+        (document.getElementById("cppData").textContent = data);
+    document
+        .getElementById("callCppButton")
+        .addEventListener("click", () =>
+            window.external.postMessage("showMessage")
+        );
+</script>
